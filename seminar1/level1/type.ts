@@ -1,9 +1,9 @@
 /**
  * @기본_타입
  */
-const isDone: boolean = true;
-const str: string = 'hello';
-const num: number = 2;
+const isDone = true;
+const str = 'hello';
+const num = 2;
 // const sum: number = 'sum number';
 
 /**
@@ -30,7 +30,6 @@ boo('hi');
 /**
  * @함수_타입_표현
  */
-
 function foo2(a: number, b: number): number {
   return a + b;
 }
@@ -48,11 +47,10 @@ const noReturn = (): void => {
 /**
  * @null_undefined
  */
-
-const a: null = null;
+const a = null;
 // const x: null = 2;
 
-const b: undefined = undefined;
+const b = undefined;
 // const y: undefined = null;
 
 console.log(b);
@@ -60,7 +58,6 @@ console.log(b);
 /**
  * @타입_단언
  */
-
 // angle-bracket
 const myName: any = '채정아';
 const myNameLength: number = (<string>myName).length;
@@ -72,7 +69,6 @@ const yourNameLength: number = (yourName as string).length;
 /**
  * @any
  */
-
 const unknown: any = {
   name: '채정아',
   age: 18,

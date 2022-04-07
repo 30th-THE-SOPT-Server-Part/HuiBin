@@ -64,7 +64,6 @@ console.log(currentSopt.introduce());
 /**
  * @선택적_프로퍼티
  */
-
 interface Closet {
   name: string;
   shirt: number;
