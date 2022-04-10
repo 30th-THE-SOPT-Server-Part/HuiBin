@@ -1,5 +1,5 @@
-import { Dinner } from './interface/Dinner';
-import { Member } from './interface/Member';
+import { Dinner } from './interface/dinner';
+import { Member } from './interface/member';
 
 const dinner: Dinner = {
   member: [
