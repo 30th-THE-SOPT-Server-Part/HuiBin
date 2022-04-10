@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -12,9 +13,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "allowJs": true,
-    "esModuleInterop": true,
-    "typeRoots": ["./src/types/express.d.ts", "./node_modules/@types"]
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["tests"]
 }

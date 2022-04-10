@@ -1,5 +1,12 @@
 {
-  "name": "HuiBin",
+  "name": "huibin",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "seminar2/level1/express-example",
+      "seminar2/level2"
+    ]
+  },
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/30th-THE-SOPT-Server-Part/HuiBin.git",
@@ -11,12 +18,15 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
+    "@yarnpkg/pnpify": "^4.0.0-rc.1",
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
