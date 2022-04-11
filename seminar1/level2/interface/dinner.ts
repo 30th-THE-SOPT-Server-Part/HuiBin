@@ -1,8 +1,8 @@
 import { Member } from './member';
 
 export interface Dinner {
-  member: Member[];
+  members: Member[];
 
-  shuffle(array: Member[]): Member[];
-  organize(array: Member[]): void;
+  shuffle(members: Member[]): Member[];
+  organize(members: Member[]): void;
 }
