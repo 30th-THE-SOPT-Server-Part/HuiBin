@@ -1,8 +1,7 @@
 import { Dinner } from './interface/dinner';
-import { Member } from './interface/member';
 
 const dinner: Dinner = {
-  member: [
+  members: [
     {
       name: '채정아',
       group: 'ob',
@@ -24,20 +23,23 @@ const dinner: Dinner = {
       group: 'ob',
     },
   ],
-  shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
+  shuffle(members) {
+    members.sort(() => Math.random() - 0.5);
 
-    return array;
+    return members;
   },
-  organize(array) {
-    this.shuffle(array);
+  organize(members) {
+    this.shuffle(members);
 
-    const ob = array.find(o => o.group === 'ob') as Member;
-    const yb = array.find(o => o.group === 'yb') as Member;
-    const dinnerMember = [ob.name, yb.name];
+    const ob = members.find(member => member.group === 'ob');
+    const yb = members.find(member => member.group === 'yb');
 
-    console.log(`오늘의 저녁 식사 멤버는 ${dinnerMember[0]}, ${dinnerMember[1]}`);
+    if (ob && yb) {
+      const dinnerMembers = [ob.name, yb.name];
+
+      console.log(`오늘의 저녁 식사 멤버는 ${dinnerMembers[0]}, ${dinnerMembers[1]}`);
+    }
   },
 };
 
-dinner.organize(dinner.member);
+dinner.organize(dinner.members);
