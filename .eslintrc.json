@@ -13,7 +13,8 @@
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "createDefaultProgram": true
   },
   "ignorePatterns": ["dist/", "node_modules/"],
   "plugins": ["@typescript-eslint"],
@@ -24,6 +25,7 @@
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off"
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "no-void": "off"
   }
 }
