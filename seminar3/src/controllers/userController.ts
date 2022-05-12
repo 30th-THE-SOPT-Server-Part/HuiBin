@@ -34,7 +34,7 @@ const updateUser = async (req: Request, res: Response) => {
   const { userId } = req.params;
 
   try {
-    const data = await userService.updateUser(userId, userUpdateDTO);
+    await userService.updateUser(userId, userUpdateDTO);
 
     res.status(sc.NO_CONTENT).send();
   } catch (error) {
