@@ -12,15 +12,18 @@ import { userService } from '../services';
  */
 const createUser = async (req: Request, res: Response) => {
   const userCreateDTO: UserCreateDTO = req.body;
+  const { name, phone, email } = userCreateDTO;
+
+  if (!name || !phone || !email) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
 
   try {
     const data = await userService.createUser(userCreateDTO);
 
-    res.status(sc.CREATED).send(success(sc.CREATED, rm.CREATE_USER_SUCCESS, data));
+    return res.status(sc.CREATED).send(success(sc.CREATED, rm.CREATE_USER_SUCCESS, data));
   } catch (error) {
     console.log(error);
 
-    res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -36,11 +39,11 @@ const updateUser = async (req: Request, res: Response) => {
   try {
     await userService.updateUser(userId, userUpdateDTO);
 
-    res.status(sc.NO_CONTENT).send();
+    return res.status(sc.NO_CONTENT).send();
   } catch (error) {
     console.log(error);
 
-    res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -55,11 +58,12 @@ const getUser = async (req: Request, res: Response) => {
   try {
     const data = await userService.getUserById(userId);
 
-    res.status(sc.OK).send(success(sc.OK, rm.READ_USER_SUCCESS, data));
+    if (!data) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NO_USER));
+    return res.status(sc.OK).send(success(sc.OK, rm.READ_USER_SUCCESS, data));
   } catch (error) {
     console.log(error);
 
-    res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
   }
 };
 
@@ -74,11 +78,11 @@ const deleteUser = async (req: Request, res: Response) => {
   try {
     await userService.deleteUser(userId);
 
-    res.status(sc.NO_CONTENT).send();
+    return res.status(sc.NO_CONTENT).send();
   } catch (error) {
     console.log(error);
 
-    res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
   }
 };
 

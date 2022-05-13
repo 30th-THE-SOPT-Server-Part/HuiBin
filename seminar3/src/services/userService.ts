@@ -27,15 +27,7 @@ const createUser = async (userCreateDTO: UserCreateDTO) => {
  */
 const updateUser = async (userId: string, userUpdateDTO: UserUpdateDTO) => {
   try {
-    const user = {
-      name: userUpdateDTO.name,
-      phone: userUpdateDTO.phone,
-      email: userUpdateDTO.email,
-      age: userUpdateDTO.age,
-      school: userUpdateDTO.school,
-    };
-
-    await User.findByIdAndUpdate(userId, user);
+    await User.findByIdAndUpdate(userId, userUpdateDTO);
   } catch (error) {
     console.log(error);
     throw error;
@@ -49,6 +41,7 @@ const getUserById = async (userId: string) => {
   try {
     const user: UserResponseDTO | null = await User.findById(userId);
 
+    if (!user) return null;
     return user;
   } catch (error) {
     console.log(error);

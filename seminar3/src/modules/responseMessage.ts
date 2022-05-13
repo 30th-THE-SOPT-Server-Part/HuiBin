@@ -7,6 +7,7 @@ const message = {
   // 유저
   CREATE_USER_SUCCESS: '유저 생성 성공',
   READ_USER_SUCCESS: '유저 조회 성공',
+  NO_USER: '존재하지 않는 유저입니다.',
 
   // 블로그
   POST_BLOG_SUCCESS: '블로그 작성 성공',
