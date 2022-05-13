@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { SchoolInfo } from '../school/schoolInfo';
 
 export interface UserInfo {
@@ -6,4 +7,9 @@ export interface UserInfo {
   email: string;
   age: number;
   school: SchoolInfo;
+}
+
+export interface AuthorInfo {
+  _id: mongoose.Schema.Types.ObjectId;
+  name: string;
 }
