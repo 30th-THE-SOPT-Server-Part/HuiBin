@@ -26,6 +26,8 @@
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "no-void": "off"
+    "no-void": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "no-underscore-dangle": "off"
   }
 }
