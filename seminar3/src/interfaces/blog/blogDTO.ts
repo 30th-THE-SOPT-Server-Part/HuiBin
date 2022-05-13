@@ -12,7 +12,7 @@ export interface BlogUpdateDTO {
   content?: string;
 }
 
-export interface BlogGetResDTO {
+export interface BlogResponseDTO {
   _id: mongoose.Schema.Types.ObjectId;
   title: string;
   content: string;

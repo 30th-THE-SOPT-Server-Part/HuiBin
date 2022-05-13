@@ -1,4 +1,4 @@
-import { BlogGetResDTO, BlogPostDTO, BlogUpdateDTO } from '../interfaces/blog/blogDTO';
+import { BlogResponseDTO, BlogPostDTO, BlogUpdateDTO } from '../interfaces/blog/blogDTO';
 import { BaseResponseDTO } from '../interfaces/base/baseDTO';
 import Blog from '../models/Blog';
 
@@ -43,7 +43,7 @@ const getBlogById = async (blogId: string) => {
 
     if (!blog) return null;
 
-    const data: BlogGetResDTO = {
+    const data: BlogResponseDTO = {
       _id: blog._id,
       title: blog.title,
       content: blog.content,
