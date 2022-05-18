@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { SchoolInfo } from '../school/schoolInfo';
 
 export interface UserInfo {

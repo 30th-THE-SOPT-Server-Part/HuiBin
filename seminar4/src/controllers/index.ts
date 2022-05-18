@@ -1,3 +1,4 @@
 import userController from './userController';
+import reviewController from './reviewController';
 
-export { userController };
+export { userController, reviewController };

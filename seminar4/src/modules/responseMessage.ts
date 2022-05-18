@@ -8,6 +8,10 @@ const message = {
   CREATE_USER_SUCCESS: '유저 생성 성공',
   READ_USER_SUCCESS: '유저 조회 성공',
   NO_USER: '존재하지 않는 유저입니다.',
+
+  // 리뷰
+  CREATE_REVIEW_SUCCESS: '리뷰 작성 성공',
+  READ_REVIEW_SUCCESS: '리뷰 조회 성공',
 };
 
 export default message;
