@@ -35,6 +35,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "seminar4",\
         "reference": "workspace:seminar4"\
+      },\
+      {\
+        "name": "seminar5",\
+        "reference": "workspace:seminar5"\
       }\
     ],\
     "enableTopLevelFallback": true,\
@@ -44,7 +48,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["huibin", ["workspace:."]],\
       ["level2", ["workspace:seminar2/level2"]],\
       ["seminar3", ["workspace:seminar3"]],\
-      ["seminar4", ["workspace:seminar4"]]\
+      ["seminar4", ["workspace:seminar4"]],\
+      ["seminar5", ["workspace:seminar5"]]\
     ],\
     "fallbackPool": [\
     ],\
@@ -4505,6 +4510,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./seminar4/",\
           "packageDependencies": [\
             ["seminar4", "workspace:seminar4"],\
+            ["@types/express", "npm:4.17.13"],\
+            ["@types/mongoose", "npm:5.11.97"],\
+            ["@types/node", "npm:17.0.25"],\
+            ["dotenv", "npm:16.0.0"],\
+            ["express", "npm:4.17.3"],\
+            ["express-validator", "npm:6.14.0"],\
+            ["mongoose", "npm:6.3.1"],\
+            ["nodemon", "npm:2.0.15"],\
+            ["ts-node", "virtual:d1f38372a477704c02b5aa71861260ad087c273b5d8bad829747ed89b26d3f1c777fe40e3b628f7b1be3be01356c78fd2de62c020caacd7ba056f5b958f42626#npm:10.7.0"],\
+            ["typescript", "patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=bda367"]\
+          ],\
+          "linkType": "SOFT"\
+        }]\
+      ]],\
+      ["seminar5", [\
+        ["workspace:seminar5", {\
+          "packageLocation": "./seminar5/",\
+          "packageDependencies": [\
+            ["seminar5", "workspace:seminar5"],\
             ["@types/express", "npm:4.17.13"],\
             ["@types/mongoose", "npm:5.11.97"],\
             ["@types/node", "npm:17.0.25"],\
