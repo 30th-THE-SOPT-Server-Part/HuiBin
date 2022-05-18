@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import sc from '../modules/statusCode';
 import rm from '../modules/responseMessage';
 import { success, fail } from '../modules/util';
@@ -11,10 +12,11 @@ import { userService } from '../services';
  *  @access Public
  */
 const createUser = async (req: Request, res: Response) => {
-  const userCreateDTO: UserCreateDTO = req.body;
-  const { name, phone, email } = userCreateDTO;
+  const reqError = validationResult(req);
 
-  if (!name || !phone || !email) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+  if (!reqError.isEmpty()) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+
+  const userCreateDTO: UserCreateDTO = req.body;
 
   try {
     const data = await userService.createUser(userCreateDTO);

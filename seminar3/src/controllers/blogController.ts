@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import sc from '../modules/statusCode';
 import rm from '../modules/responseMessage';
 import { success, fail } from '../modules/util';
@@ -11,10 +12,11 @@ import { blogService } from '../services';
  *  @access Public
  */
 const postBlog = async (req: Request, res: Response) => {
-  const blogPostDTO: BlogPostDTO = req.body;
-  const { title, content, author } = blogPostDTO;
+  const reqError = validationResult(req);
 
-  if (!title || !content || !author) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+  if (!reqError.isEmpty()) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+
+  const blogPostDTO: BlogPostDTO = req.body;
 
   try {
     const data = await blogService.createBlog(blogPostDTO);

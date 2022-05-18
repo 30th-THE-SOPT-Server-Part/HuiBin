@@ -1,3 +1,5 @@
 import userController from './userController';
+import reviewController from './reviewController';
+import movieController from './movieController';
 
-export { userController };
+export { userController, reviewController, movieController };
