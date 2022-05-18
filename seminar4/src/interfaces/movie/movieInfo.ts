@@ -2,6 +2,6 @@ export interface MovieInfo {
   title: string;
   director: string;
   openingDate: Date;
-  thumnail: string;
+  thumbnail: string;
   content: string;
 }
