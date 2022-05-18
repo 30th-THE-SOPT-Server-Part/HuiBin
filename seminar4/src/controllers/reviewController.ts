@@ -41,7 +41,7 @@ const getReviews = async (req: Request, res: Response) => {
   try {
     const data = await reviewService.getReviewsByMovieId(movieId);
 
-    return res.status(sc.CREATED).send(success(sc.CREATED, rm.READ_REVIEW_SUCCESS, data));
+    return res.status(sc.OK).send(success(sc.OK, rm.READ_REVIEW_SUCCESS, data));
   } catch (error) {
     console.log(error);
 
