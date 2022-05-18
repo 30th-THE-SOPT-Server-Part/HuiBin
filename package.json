@@ -5,7 +5,8 @@
     "packages": [
       "seminar2/level1/express-example",
       "seminar2/level2",
-      "seminar3"
+      "seminar3",
+      "seminar4"
     ]
   },
   "version": "1.0.0",
