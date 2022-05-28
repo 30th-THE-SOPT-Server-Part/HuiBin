@@ -29,6 +29,7 @@
     "no-void": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "no-underscore-dangle": "off",
-    "@typescript-eslint/unbound-method": "off"
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/no-unsafe-argument": "warn"
   }
 }
