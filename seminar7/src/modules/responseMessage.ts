@@ -18,6 +18,9 @@ const message = {
   READ_ALL_MOVIE_SUCCESS: '전체 영화 조회 성공',
   READ_MOVIE_SUCCESS: '영화 조회 성공',
   NO_MOVIE: '존재하지 않는 영화입니다.',
+
+  // 파일
+  CREATE_FILE_SUCCESS: '파일 생성 성공',
 };
 
 export default message;
