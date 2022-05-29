@@ -9,7 +9,7 @@ import { reviewService } from '../services';
 /**
  *  @route POST /review/movies/:movieId
  *  @desc 영화 리뷰 작성
- *  @access Public
+ *  @access public
  */
 const createReview = async (req: Request, res: Response) => {
   const reqError = validationResult(req);
@@ -33,7 +33,7 @@ const createReview = async (req: Request, res: Response) => {
 /**
  *  @route GET /review/movies/:movieId
  *  @desc 영화 리뷰 조회
- *  @access Public
+ *  @access public
  */
 const getReviews = async (req: Request, res: Response) => {
   const { movieId } = req.params;

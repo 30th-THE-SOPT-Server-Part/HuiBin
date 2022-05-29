@@ -8,7 +8,7 @@ import { FileCreateDTO } from '../interfaces/file/fileDTO';
 /**
  *  @route POST /file
  *  @desc 파일 업로드
- *  @access Public
+ *  @access public
  */
 const uploadFile = async (req: Request, res: Response) => {
   if (!req.file) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
@@ -30,7 +30,7 @@ const uploadFile = async (req: Request, res: Response) => {
 /**
  *  @route POST /file
  *  @desc 여러 파일 업로드
- *  @access Public
+ *  @access public
  */
 const uploadFiles = async (req: Request, res: Response) => {
   if (!req.files) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
