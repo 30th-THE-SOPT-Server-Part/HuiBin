@@ -3,8 +3,9 @@ import { validationResult } from 'express-validator';
 import sc from '../modules/statusCode';
 import rm from '../modules/responseMessage';
 import { success, fail } from '../modules/util';
-import { ReviewCreateDTO } from '../interfaces/review/reviewDTO';
-import { reviewService } from '../services';
+import { ReviewCreateDTO, ReviewsResponseDTO } from '../interfaces/review/reviewDTO';
+import { ReviewOptionType } from '../interfaces/review/reviewType';
+import { movieService, reviewService } from '../services';
 
 /**
  *  @route POST /review/movies/:movieId
@@ -31,17 +32,57 @@ const createReview = async (req: Request, res: Response) => {
 };
 
 /**
- *  @route GET /review/movies/:movieId
+ *  @route GET /review/movies/:movieId?page=&search=&option=
  *  @desc 영화 리뷰 조회
  *  @access public
  */
-const getReviews = async (req: Request, res: Response) => {
+const searchReview = async (req: Request, res: Response) => {
   const { movieId } = req.params;
+  const { search, option } = req.query;
+  const page = Number(req.query.page || 1);
+
+  let type: 'search' | 'read' | null;
+
+  if (search && option) {
+    type = 'search';
+
+    const isOptionType = (value: string): value is ReviewOptionType => {
+      return ['title', 'content', 'title_content'].includes(value);
+    };
+
+    if (!isOptionType(option as string)) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+  } else if (!search && !option) type = 'read';
+  else type = null;
 
   try {
-    const data = await reviewService.getReviewsByMovieId(movieId);
+    switch (type) {
+      case 'search': {
+        const [movie, reviews] = await Promise.all([
+          movieService.getMovieById(movieId),
+          reviewService.searchReview(movieId, search as string, option as ReviewOptionType, page),
+        ]);
 
-    return res.status(sc.OK).send(success(sc.OK, rm.READ_REVIEW_SUCCESS, data));
+        if (!movie) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NO_MOVIE));
+
+        const data: ReviewsResponseDTO = { movie, ...reviews };
+
+        return res.status(sc.OK).send(success(sc.OK, rm.SEARCH_REVIEW_SUCCESS, data));
+      }
+      case 'read': {
+        const [movie, reviews] = await Promise.all([
+          movieService.getMovieById(movieId),
+          reviewService.getReviewsByMovieId(movieId, page),
+        ]);
+
+        if (!movie) return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NO_MOVIE));
+
+        const data: ReviewsResponseDTO = { movie, ...reviews };
+
+        return res.status(sc.OK).send(success(sc.OK, rm.READ_REVIEW_SUCCESS, data));
+      }
+      default:
+        return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
+    }
   } catch (error) {
     console.log(error);
 
@@ -51,5 +92,5 @@ const getReviews = async (req: Request, res: Response) => {
 
 export default {
   createReview,
-  getReviews,
+  searchReview,
 };

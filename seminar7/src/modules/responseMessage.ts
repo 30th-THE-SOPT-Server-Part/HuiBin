@@ -12,6 +12,7 @@ const message = {
   // 리뷰
   CREATE_REVIEW_SUCCESS: '리뷰 작성 성공',
   READ_REVIEW_SUCCESS: '리뷰 조회 성공',
+  SEARCH_REVIEW_SUCCESS: '리뷰 검색 성공',
 
   // 영화
   CREATE_MOVIE_SUCCESS: '영화 생성 성공',
