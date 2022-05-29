@@ -14,9 +14,14 @@ export interface MovieUpdateDTO {
   content?: string;
 }
 
-export interface AllMovieResponseDTO {
+export interface MovieResponseDTO {
   title: string;
-  thumbbnail?: string;
+  director: string;
+  thumbnail?: string;
+  content?: string;
 }
 
-export type MovieResponseDTO = MovieCreateDTO;
+export interface MoviesResponseDTO {
+  movies: MovieResponseDTO[];
+  lastPage: number;
+}

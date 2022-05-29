@@ -15,7 +15,8 @@ const message = {
 
   // 영화
   CREATE_MOVIE_SUCCESS: '영화 생성 성공',
-  READ_ALL_MOVIE_SUCCESS: '전체 영화 조회 성공',
+  READ_ALL_MOVIE_SUCCESS: '영화 전체 조회 성공',
+  SEARCH_MOVIE_SUCCESS: '영화 검색 성공',
   READ_MOVIE_SUCCESS: '영화 조회 성공',
   NO_MOVIE: '존재하지 않는 영화입니다.',
 
