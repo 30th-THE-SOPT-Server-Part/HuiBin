@@ -113,14 +113,14 @@ const searchMovie = async (req: Request, res: Response) => {
   try {
     switch (type) {
       case 'search': {
-        const searchData = await movieService.searchMovie(search as string, option as MovieOptionType, page);
+        const data = await movieService.searchMovie(search as string, option as MovieOptionType, page);
 
-        return res.status(sc.OK).send(success(sc.OK, rm.SEARCH_MOVIE_SUCCESS, searchData));
+        return res.status(sc.OK).send(success(sc.OK, rm.SEARCH_MOVIE_SUCCESS, data));
       }
       case 'read': {
-        const readData = await movieService.getAllMovies(page);
+        const data = await movieService.getAllMovies(page);
 
-        return res.status(sc.OK).send(success(sc.OK, rm.READ_ALL_MOVIE_SUCCESS, readData));
+        return res.status(sc.OK).send(success(sc.OK, rm.READ_ALL_MOVIE_SUCCESS, data));
       }
       default:
         return res.status(sc.BAD_REQUEST).send(fail(sc.BAD_REQUEST, rm.NULL_VALUE));
