@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { check, query } from 'express-validator';
+import { check } from 'express-validator';
 import { movieController } from '../controllers';
 
 const router = Router();
