@@ -51,23 +51,6 @@ const updateMovie = async (req: Request, res: Response) => {
 };
 
 /**
- *  @route GET /movie
- *  @desc 전체 영화 조회
- *  @access public
- */
-const getAllMovies = async (req: Request, res: Response) => {
-  try {
-    const data = await movieService.getAllMovies();
-
-    return res.status(sc.OK).send(success(sc.OK, rm.READ_ALL_MOVIE_SUCCESS, data));
-  } catch (error) {
-    console.log(error);
-
-    return res.status(sc.INTERNAL_SERVER_ERROR).send(fail(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-  }
-};
-
-/**
  *  @route GET /movie/:movieId
  *  @desc 영화 조회
  *  @access public
@@ -107,7 +90,7 @@ const deleteMovie = async (req: Request, res: Response) => {
 };
 
 /**
- *  @route GET /movie/search?page=&keyword=&option=
+ *  @route GET /movie?page=&keyword=&option=
  *  @desc 영화 검색
  *  @access public
  */
@@ -135,7 +118,7 @@ const searchMovie = async (req: Request, res: Response) => {
         return res.status(sc.OK).send(success(sc.OK, rm.SEARCH_MOVIE_SUCCESS, searchData));
       }
       case 'read': {
-        const readData = await movieService.getAllMoviesByPage(page);
+        const readData = await movieService.getAllMovies(page);
 
         return res.status(sc.OK).send(success(sc.OK, rm.READ_ALL_MOVIE_SUCCESS, readData));
       }
@@ -152,7 +135,6 @@ const searchMovie = async (req: Request, res: Response) => {
 export default {
   createMovie,
   updateMovie,
-  getAllMovies,
   getMovie,
   deleteMovie,
   searchMovie,

@@ -39,21 +39,7 @@ const updateMovie = async (movieId: string, movieUpdateDTO: MovieUpdateDTO) => {
 /**
  * @전체_영화_조회
  */
-const getAllMovies = async () => {
-  try {
-    const movies: MovieResponseDTO[] = await Movie.find({}, 'title director thumbnail content');
-
-    return movies;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
-/**
- * @페이지로_전체_영화_조회
- */
-const getAllMoviesByPage = async (page: number) => {
+const getAllMovies = async (page: number) => {
   try {
     const perPage = 2;
     const movies: MovieResponseDTO[] = await Movie.find({}, 'title director thumbnail content')
@@ -152,7 +138,6 @@ export default {
   createMovie,
   updateMovie,
   getAllMovies,
-  getAllMoviesByPage,
   getMovieById,
   deleteMovie,
   searchMovie,
