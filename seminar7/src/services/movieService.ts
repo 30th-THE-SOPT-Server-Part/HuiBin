@@ -92,26 +92,26 @@ const deleteMovie = async (movieId: string) => {
 /**
  * @영화_검색
  */
-const searchMovie = async (keyword: string, option: MovieOptionType, page: number) => {
+const searchMovie = async (search: string, option: MovieOptionType, page: number) => {
   try {
     let movies: MovieResponseDTO[] = [];
-    const keywordRegex = regex(keyword);
+    const searchRegex = regex(search);
     const perPage = 2;
 
     if (option === 'title') {
-      movies = await Movie.find({ title: { $regex: keywordRegex } }, 'title director thumbnail content')
+      movies = await Movie.find({ title: { $regex: searchRegex } }, 'title director thumbnail content')
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage);
     } else if (option === 'director') {
-      movies = await Movie.find({ director: { $regex: keywordRegex } }, 'title director thumbnail content')
+      movies = await Movie.find({ director: { $regex: searchRegex } }, 'title director thumbnail content')
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage);
     } else {
       movies = await Movie.find(
         {
-          $or: [{ title: { $regex: keywordRegex } }, { director: { $regex: keywordRegex } }],
+          $or: [{ title: { $regex: searchRegex } }, { director: { $regex: searchRegex } }],
         },
         'title director thumbnail content',
       )
