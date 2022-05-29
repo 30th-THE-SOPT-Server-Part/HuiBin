@@ -95,23 +95,23 @@ const deleteMovie = async (movieId: string) => {
 const searchMovie = async (search: string, option: MovieOptionType, page: number) => {
   try {
     let movies: MovieResponseDTO[] = [];
-    const searchRegex = regex(search);
+    const pattern = regex(search);
     const perPage = 2;
 
     if (option === 'title') {
-      movies = await Movie.find({ title: { $regex: searchRegex } }, 'title director thumbnail content')
+      movies = await Movie.find({ title: { $regex: pattern } }, 'title director thumbnail content')
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage);
     } else if (option === 'director') {
-      movies = await Movie.find({ director: { $regex: searchRegex } }, 'title director thumbnail content')
+      movies = await Movie.find({ director: { $regex: pattern } }, 'title director thumbnail content')
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage);
     } else {
       movies = await Movie.find(
         {
-          $or: [{ title: { $regex: searchRegex } }, { director: { $regex: searchRegex } }],
+          $or: [{ title: { $regex: pattern } }, { director: { $regex: pattern } }],
         },
         'title director thumbnail content',
       )
