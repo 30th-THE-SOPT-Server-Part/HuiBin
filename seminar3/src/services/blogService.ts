@@ -12,7 +12,7 @@ const createBlog = async (blogPostDTO: BlogPostDTO) => {
     await blog.save();
 
     const data: BaseResponseDTO = {
-      _id: blog._id,
+      id: blog._id,
     };
 
     return data;
@@ -39,17 +39,17 @@ const updateBlog = async (blogId: string, blogUpdateDTO: BlogUpdateDTO) => {
  */
 const getBlogById = async (blogId: string) => {
   try {
-    const blog = await Blog.findById(blogId).populate('author');
+    const blog: any = await Blog.findById(blogId).populate('author');
 
     if (!blog) return null;
 
     const data: BlogResponseDTO = {
-      _id: blog._id,
+      id: blog._id,
       title: blog.title,
       content: blog.content,
       date: blog.createdAt.toLocaleDateString(),
       author: {
-        _id: blog.author._id,
+        id: blog.author._id,
         name: blog.author.name,
       },
     };

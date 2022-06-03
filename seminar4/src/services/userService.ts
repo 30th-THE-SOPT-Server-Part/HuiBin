@@ -12,7 +12,7 @@ const createUser = async (userCreateDTO: UserCreateDTO) => {
     await user.save();
 
     const data: BaseResponseDTO = {
-      _id: user.id,
+      id: user.id,
     };
 
     return data;

@@ -13,7 +13,7 @@ export interface BlogUpdateDTO {
 }
 
 export interface BlogResponseDTO {
-  _id: mongoose.Types.ObjectId;
+  id: mongoose.Types.ObjectId;
   title: string;
   content: string;
   date: string;
