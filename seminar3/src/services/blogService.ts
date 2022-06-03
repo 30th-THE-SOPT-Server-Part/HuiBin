@@ -50,7 +50,7 @@ const getBlogById = async (blogId: string) => {
       date: blog.createdAt.toLocaleDateString(),
       author: {
         _id: blog.author._id,
-        name: (blog.author as any).name,
+        name: blog.author.name,
       },
     };
 
