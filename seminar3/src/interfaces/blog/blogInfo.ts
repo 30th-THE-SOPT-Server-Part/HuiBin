@@ -1,10 +1,9 @@
-import { BaseResponseDTO } from '../base/baseDTO';
-import { UserInfo } from '../user/userInfo';
+import mongoose from 'mongoose';
 
 export interface BlogInfo {
   title: string;
   content: string;
-  author: BaseResponseDTO & UserInfo;
+  author: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -4,7 +4,7 @@ import { AuthorInfo } from '../user/userInfo';
 export interface BlogPostDTO {
   title: string;
   content: string;
-  author: mongoose.Schema.Types.ObjectId;
+  author: mongoose.Types.ObjectId;
 }
 
 export interface BlogUpdateDTO {
@@ -13,7 +13,7 @@ export interface BlogUpdateDTO {
 }
 
 export interface BlogResponseDTO {
-  _id: mongoose.Schema.Types.ObjectId;
+  _id: mongoose.Types.ObjectId;
   title: string;
   content: string;
   date: string;

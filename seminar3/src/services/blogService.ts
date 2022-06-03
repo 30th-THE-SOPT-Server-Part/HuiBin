@@ -39,7 +39,7 @@ const updateBlog = async (blogId: string, blogUpdateDTO: BlogUpdateDTO) => {
  */
 const getBlogById = async (blogId: string) => {
   try {
-    const blog = await Blog.findById(blogId).populate('author', ['_id', 'name']);
+    const blog = await Blog.findById(blogId).populate('author');
 
     if (!blog) return null;
 
@@ -50,7 +50,7 @@ const getBlogById = async (blogId: string) => {
       date: blog.createdAt.toLocaleDateString(),
       author: {
         _id: blog.author._id,
-        name: blog.author.name,
+        name: (blog.author as any).name,
       },
     };
 

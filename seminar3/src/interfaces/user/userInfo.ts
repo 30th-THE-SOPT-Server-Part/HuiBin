@@ -10,6 +10,6 @@ export interface UserInfo {
 }
 
 export interface AuthorInfo {
-  _id: mongoose.Schema.Types.ObjectId;
+  _id: mongoose.Types.ObjectId;
   name: string;
 }
