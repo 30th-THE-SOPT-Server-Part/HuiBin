@@ -1,5 +1,5 @@
 import { BaseResponseDTO } from '../interfaces/base/baseDTO';
-import { ReviewCreateDTO, ReviewResponseDTO, ReviewsResponseDTO } from '../interfaces/review/reviewDTO';
+import { ReviewCreateDTO, ReviewResponseDTO } from '../interfaces/review/reviewDTO';
 import { ReviewOptionType } from '../interfaces/review/reviewType';
 import { regex } from '../modules/library';
 import Review from '../models/Review';
@@ -17,7 +17,7 @@ const createReview = async (reviewCreateDTO: ReviewCreateDTO, movieId: string) =
     await review.save();
 
     const data: BaseResponseDTO = {
-      _id: review.id,
+      id: review.id,
     };
 
     return data;
@@ -39,7 +39,7 @@ const getReviewsByMovieId = async (movieId: string, page: number) => {
       .skip(perPage * (page - 1))
       .limit(perPage);
 
-    const reviewData: ReviewResponseDTO[] = reviews.map(review => ({
+    const reviewData: ReviewResponseDTO[] = reviews.map((review: any) => ({
       writer: review.writer.name,
       title: review.title,
       content: review.content,
@@ -88,7 +88,7 @@ const searchReview = async (movieId: string, search: string, option: ReviewOptio
         .limit(perPage);
     }
 
-    const reviewData = reviews.map(review => ({
+    const reviewData = reviews.map((review: any) => ({
       writer: review.writer.name,
       title: review.title,
       content: review.content,

@@ -1,9 +1,8 @@
-import { MovieInfo } from '../movie/movieInfo';
-import { UserInfo } from '../user/userInfo';
+import mongoose from 'mongoose';
 
 export interface ReviewInfo {
-  writer: UserInfo;
-  movie: MovieInfo;
+  writer: mongoose.Types.ObjectId;
+  movie: mongoose.Types.ObjectId;
   title: string;
   content: string;
 }

@@ -14,7 +14,7 @@ const createMovie = async (movieCreateDTO: MovieCreateDTO) => {
     await movie.save();
 
     const data: BaseResponseDTO = {
-      _id: movie.id,
+      id: movie.id,
     };
 
     return data;
