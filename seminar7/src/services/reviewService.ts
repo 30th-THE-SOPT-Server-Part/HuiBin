@@ -39,7 +39,7 @@ const getReviewsByMovieId = async (movieId: string, page: number) => {
       .skip(perPage * (page - 1))
       .limit(perPage);
 
-    const reviewData: ReviewResponseDTO[] = reviews.map((review: any) => ({
+    const reviewData: ReviewResponseDTO[] = reviews.map(review => ({
       writer: review.writer.name,
       title: review.title,
       content: review.content,
@@ -88,7 +88,7 @@ const searchReview = async (movieId: string, search: string, option: ReviewOptio
         .limit(perPage);
     }
 
-    const reviewData = reviews.map((review: any) => ({
+    const reviewData = reviews.map(review => ({
       writer: review.writer.name,
       title: review.title,
       content: review.content,
