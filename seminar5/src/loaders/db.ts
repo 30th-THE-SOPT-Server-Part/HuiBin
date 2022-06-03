@@ -15,7 +15,7 @@ const connectDB = async () => {
       console.log('Movie Collection is created!');
     });
     Review.createCollection().then(function (collection) {
-      console.log('Review  Collection is created!');
+      console.log('Review Collection is created!');
     });
   } catch (err: any) {
     console.error(err.message);
