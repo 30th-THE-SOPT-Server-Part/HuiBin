@@ -32,7 +32,7 @@ const getReviewsByMovieId = async (movieId: string) => {
   try {
     const reviews = await Review.find({ movie: movieId }).populate('writer', 'name').populate('movie');
 
-    const data: ReviewResponseDTO[] = reviews.map(review => ({
+    const data: ReviewResponseDTO[] = reviews.map((review: any) => ({
       writer: review.writer.name,
       title: review.title,
       content: review.content,
