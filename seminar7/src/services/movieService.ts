@@ -1,6 +1,8 @@
-import { AllMovieResponseDTO, MovieCreateDTO, MovieResponseDTO, MovieUpdateDTO } from '../interfaces/movie/movieDTO';
+import { MovieCreateDTO, MovieResponseDTO, MoviesResponseDTO, MovieUpdateDTO } from '../interfaces/movie/movieDTO';
 import { BaseResponseDTO } from '../interfaces/base/baseDTO';
+import { regex } from '../modules/library';
 import Movie from '../models/Movie';
+import { MovieOptionType } from '../interfaces/movie/movieType';
 
 /**
  * @영화_생성
@@ -12,7 +14,7 @@ const createMovie = async (movieCreateDTO: MovieCreateDTO) => {
     await movie.save();
 
     const data: BaseResponseDTO = {
-      _id: movie.id,
+      id: movie.id,
     };
 
     return data;
@@ -37,11 +39,22 @@ const updateMovie = async (movieId: string, movieUpdateDTO: MovieUpdateDTO) => {
 /**
  * @전체_영화_조회
  */
-const getAllMovies = async () => {
+const getAllMovies = async (page: number) => {
   try {
-    const movies: AllMovieResponseDTO[] = await Movie.find({}, 'title thumbnail');
+    const perPage = 2;
+    const movies: MovieResponseDTO[] = await Movie.find({}, 'title director thumbnail content')
+      .sort({ createdAt: -1 })
+      .skip(perPage * (page - 1))
+      .limit(perPage);
 
-    return movies;
+    const total = await Movie.countDocuments();
+    const lastPage = Math.ceil(total / perPage);
+    const data: MoviesResponseDTO = {
+      movies,
+      lastPage,
+    };
+
+    return data;
   } catch (error) {
     console.log(error);
     throw error;
@@ -53,9 +66,10 @@ const getAllMovies = async () => {
  */
 const getMovieById = async (movieId: string) => {
   try {
-    const movie: MovieResponseDTO | null = await Movie.findById(movieId);
+    const movie: MovieResponseDTO | null = await Movie.findById(movieId, 'title director thumbnail content');
 
     if (!movie) return null;
+
     return movie;
   } catch (error) {
     console.log(error);
@@ -75,10 +89,56 @@ const deleteMovie = async (movieId: string) => {
   }
 };
 
+/**
+ * @영화_검색
+ */
+const searchMovie = async (search: string, option: MovieOptionType, page: number) => {
+  try {
+    let movies: MovieResponseDTO[] = [];
+    const pattern = regex(search);
+    const perPage = 2;
+
+    if (option === 'title') {
+      movies = await Movie.find({ title: { $regex: pattern } }, 'title director thumbnail content')
+        .sort({ createdAt: -1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage);
+    } else if (option === 'director') {
+      movies = await Movie.find({ director: { $regex: pattern } }, 'title director thumbnail content')
+        .sort({ createdAt: -1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage);
+    } else {
+      movies = await Movie.find(
+        {
+          $or: [{ title: { $regex: pattern } }, { director: { $regex: pattern } }],
+        },
+        'title director thumbnail content',
+      )
+        .sort({ createdAt: -1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage);
+    }
+
+    const total = await Movie.countDocuments();
+    const lastPage = Math.ceil(total / perPage);
+    const data: MoviesResponseDTO = {
+      movies,
+      lastPage,
+    };
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 export default {
   createMovie,
   updateMovie,
   getAllMovies,
   getMovieById,
   deleteMovie,
+  searchMovie,
 };

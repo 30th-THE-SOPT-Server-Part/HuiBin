@@ -5,6 +5,6 @@ import { reviewController } from '../controllers';
 const router = Router();
 
 router.post('/movies/:movieId', [check('writer').notEmpty(), check('title').notEmpty()], reviewController.createReview);
-router.get('/movies/:movieId', reviewController.getReviews);
+router.get('/movies/:movieId', reviewController.searchReview);
 
 export default router;

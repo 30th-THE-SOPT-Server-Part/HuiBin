@@ -9,7 +9,7 @@ import { userService } from '../services';
 /**
  *  @route POST /user
  *  @desc 유저 생성
- *  @access Public
+ *  @access public
  */
 const createUser = async (req: Request, res: Response) => {
   const reqError = validationResult(req);
@@ -32,7 +32,7 @@ const createUser = async (req: Request, res: Response) => {
 /**
  *  @route PUT /user/:userId
  *  @desc 유저 수정
- *  @access Public
+ *  @access public
  */
 const updateUser = async (req: Request, res: Response) => {
   const userUpdateDTO: UserUpdateDTO = req.body;
@@ -52,7 +52,7 @@ const updateUser = async (req: Request, res: Response) => {
 /**
  *  @route GET /user/:userId
  *  @desc 유저 조회
- *  @access Public
+ *  @access public
  */
 const getUser = async (req: Request, res: Response) => {
   const { userId } = req.params;
@@ -72,7 +72,7 @@ const getUser = async (req: Request, res: Response) => {
 /**
  *  @route DELETE /user/:userId
  *  @desc 유저 삭제
- *  @access Public
+ *  @access public
  */
 const deleteUser = async (req: Request, res: Response) => {
   const { userId } = req.params;
